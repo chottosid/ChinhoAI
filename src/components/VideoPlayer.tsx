@@ -90,18 +90,18 @@ export default function VideoPlayer({
       if (!isFullscreen) {
         if (containerRef.current.requestFullscreen) {
           await containerRef.current.requestFullscreen();
-        } else if ((containerRef.current as any).webkitRequestFullscreen) {
-          await (containerRef.current as any).webkitRequestFullscreen();
-        } else if ((containerRef.current as any).msRequestFullscreen) {
-          await (containerRef.current as any).msRequestFullscreen();
+        } else if ('webkitRequestFullscreen' in containerRef.current) {
+          await (containerRef.current as HTMLElement & { webkitRequestFullscreen(): Promise<void> }).webkitRequestFullscreen();
+        } else if ('msRequestFullscreen' in containerRef.current) {
+          await (containerRef.current as HTMLElement & { msRequestFullscreen(): Promise<void> }).msRequestFullscreen();
         }
       } else {
         if (document.exitFullscreen) {
           await document.exitFullscreen();
-        } else if ((document as any).webkitExitFullscreen) {
-          await (document as any).webkitExitFullscreen();
-        } else if ((document as any).msExitFullscreen) {
-          await (document as any).msExitFullscreen();
+        } else if ('webkitExitFullscreen' in document) {
+          await (document as Document & { webkitExitFullscreen(): Promise<void> }).webkitExitFullscreen();
+        } else if ('msExitFullscreen' in document) {
+          await (document as Document & { msExitFullscreen(): Promise<void> }).msExitFullscreen();
         }
       }
     } catch (error) {
@@ -257,8 +257,8 @@ export default function VideoPlayer({
     const handleFullscreenChange = () => {
       const isCurrentlyFullscreen = !!(
         document.fullscreenElement ||
-        (document as any).webkitFullscreenElement ||
-        (document as any).msFullscreenElement
+        ('webkitFullscreenElement' in document && (document as Document & { webkitFullscreenElement: Element | null }).webkitFullscreenElement) ||
+        ('msFullscreenElement' in document && (document as Document & { msFullscreenElement: Element | null }).msFullscreenElement)
       );
       setIsFullscreen(isCurrentlyFullscreen);
       onFullscreenChange(isCurrentlyFullscreen);

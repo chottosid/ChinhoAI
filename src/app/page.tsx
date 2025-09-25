@@ -12,8 +12,6 @@ export default function Home() {
   const [isVideoLoading, setIsVideoLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [aslPlaybackSpeed, setAslPlaybackSpeed] = useState(1.0);
-
   const handleVideoLoad = useCallback((src: string, type: 'file' | 'url') => {
     setIsVideoLoading(true);
     setVideoSrc(src);
@@ -37,11 +35,6 @@ export default function Home() {
     setVideoSrc('');
     setIsPlaying(false);
     setIsVideoLoading(false);
-    setAslPlaybackSpeed(1.0);
-  }, []);
-
-  const handleSpeedChange = useCallback((speed: number) => {
-    setAslPlaybackSpeed(speed);
   }, []);
 
   return (
@@ -173,14 +166,9 @@ export default function Home() {
                     <ASLVideoPlayer
                       isPlaying={isPlaying}
                       isFullscreen={false}
-                      playbackSpeed={aslPlaybackSpeed}
                     />
                   </div>
                 </div>
-
-
-
-
               </div>
             </motion.div>
           )}
@@ -194,7 +182,6 @@ export default function Home() {
             <ASLVideoPlayer
               isPlaying={isPlaying}
               isFullscreen={true}
-              playbackSpeed={aslPlaybackSpeed}
             />
           </div>
         </div>

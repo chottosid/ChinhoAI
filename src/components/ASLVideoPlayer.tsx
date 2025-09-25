@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 /**
  * ASL Video Player Component
@@ -62,14 +62,12 @@ interface ASLVideoPlayerProps {
 export default function ASLVideoPlayer({
   isPlaying,
   isFullscreen,
-  playbackSpeed = 2.0,
+  playbackSpeed = 1.0,
   className = ''
 }: ASLVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentClip, setCurrentClip] = useState('');
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
-
 
   // Load new ASL video
   const loadNewASLVideo = useCallback(() => {
@@ -92,17 +90,12 @@ export default function ASLVideoPlayer({
     }
   }, [isPlaying, playbackSpeed]);
 
-  // Handle video ended - load next clip
+  // Handle video ended - load next clip (consolidated logic)
   const handleVideoEnded = useCallback(() => {
     if (isPlaying) {
-      const randomIndex = Math.floor(Math.random() * ASL_CLIPS.length);
-      const selectedClip = ASL_CLIPS[randomIndex];
-      const videoUrl = `/videos/${selectedClip}`;
-      
-      setCurrentClip(videoUrl);
-      setIsVideoLoaded(false);
+      loadNewASLVideo();
     }
-  }, [isPlaying]);
+  }, [isPlaying, loadNewASLVideo]);
 
   // Sync with main video playback
   useEffect(() => {
@@ -117,17 +110,12 @@ export default function ASLVideoPlayer({
     } else {
       videoRef.current.pause();
     }
-  }, [isPlaying, currentClip]); // Removed loadNewASLVideo dependency
+  }, [isPlaying, currentClip, loadNewASLVideo]);
 
-  // Load initial video - only run once on mount
+  // Load initial video on mount
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * ASL_CLIPS.length);
-    const selectedClip = ASL_CLIPS[randomIndex];
-    const videoUrl = `/videos/${selectedClip}`;
-    
-    setCurrentClip(videoUrl);
-    setIsVideoLoaded(false);
-  }, []); // Empty dependency array - only run once
+    loadNewASLVideo();
+  }, [loadNewASLVideo]);
 
   // Update playback rate when speed changes
   useEffect(() => {
@@ -188,8 +176,6 @@ export default function ASLVideoPlayer({
             </div>
           </div>
         </motion.div>
-
-
       </div>
 
       {/* Status indicator */}
