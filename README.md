@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sign Language Avatar Prototype
 
-## Getting Started
+A prototype featuring a sign language avatar that displays ASL videos synchronized with content playback.
 
-First, run the development server:
+## Features
+
+✨ **Interactive Video Upload**
+- Drag & drop video files
+- Support for video URLs (YouTube, Vimeo, direct links)
+- Multiple format support (MP4, WebM, AVI, MOV)
+- Clean tabbed interface
+
+🎭 **Animated Sign Language Avatar**
+- Multiple gesture patterns (wave, point, expressiveHands, counting, explanation)
+- Smooth CSS animations using Framer Motion
+- Synchronizes with video playback state
+- Fullscreen-aware positioning
+
+📺 **Advanced Video Player**
+- Custom controls with play/pause, volume, fullscreen
+- Progress bar with seek functionality
+- Keyboard shortcuts (spacebar for play/pause)
+- Loading states and error handling
+
+🎨 **Modern UI/UX**
+- Responsive design with Tailwind CSS
+- Smooth transitions and hover effects
+- Glass morphism effects
+- Status indicators and loading states
+
+## How to Use
+
+1. **Upload a Video**: Either drag & drop a video file or paste a video URL
+2. **Watch the Avatar**: The animated avatar will start performing sign language gestures when the video plays
+3. **Fullscreen Mode**: Enter fullscreen and the avatar will stick to the bottom-right corner
+4. **Controls**: Use the video controls or keyboard shortcuts to control playback
+
+## Technical Implementation
+
+### Components
+
+- **VideoUpload**: Handles file upload and URL input with drag & drop support
+- **VideoPlayer**: Custom video player with fullscreen support and state management
+- **SignLanguageAvatar**: Animated avatar with multiple gesture patterns
+
+### Technologies
+
+- **Next.js 15** with App Router and TypeScript
+- **Tailwind CSS** for styling
+- **Framer Motion** for smooth animations
+- **Lucide React** for icons
+
+### State Management
+
+The application uses React hooks to manage:
+- Video source and loading states
+- Play/pause state synchronization
+- Fullscreen state handling
+- Avatar animation coordination
+
+## Demo Mode
+
+This is a frontend-only prototype demonstrating the concept of AI-powered sign language translation. The avatar performs placeholder gestures and doesn't interpret actual sign language content from videos.
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev    # Start development server
+npm run build  # Build for production
+npm run start  # Start production server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Future Enhancements
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Real sign language interpretation using AI/ML
+- Multiple avatar styles and appearances
+- Gesture customization and configuration
+- Video analytics and playbook statistics
+- Accessibility improvements for hearing-impaired users
 
-## Learn More
+## Acknowledgments
 
-To learn more about Next.js, take a look at the following resources:
+- ASL video assets provided by [Original Author Name] under MIT License
+- Original repository: https://github.com/[USERNAME]/[REPOSITORY-NAME]
+- Special thanks to the open source community for making educational ASL content available
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License Compliance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project includes third-party assets. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for detailed attribution information and license compliance details.
