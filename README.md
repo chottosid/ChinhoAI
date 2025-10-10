@@ -44,8 +44,7 @@ The application will be available at `http://localhost:3000`.
 
 ## Acknowledgments
 
-- ASL video assets provided by [Original Author Name] under MIT License
-- Original repository: https://github.com/[USERNAME]/[REPOSITORY-NAME]
+- ASL video assets provided by GanjiSaiDeekshith under MIT License
 - Special thanks to the open source community for making educational ASL content available
 
 ## License Compliance
